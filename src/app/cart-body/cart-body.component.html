@@ -23,6 +23,7 @@
           type="number"
           class="quantity"
           step="1"
+          #inputElement
           [value]="product.quantity"
           (input)="inputQuantity(product.id,product.price,inputElement)"
         />

@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { registerLocaleData } from "@angular/common";
 import localeFr from "@angular/common/locales/vi";
@@ -16,7 +17,7 @@ import { CartFooterComponent } from "./cart-footer/cart-footer.component";
     CartBodyComponent,
     CartFooterComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

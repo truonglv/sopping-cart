@@ -1,11 +1,11 @@
 <main>
   <header class="container">
-    <app-cart-header></app-cart-header>
+    <app-cart-header [itemnumber]="4" ></app-cart-header>
   </header>
   <section class="container">
-    <app-cart-body></app-cart-body>
+    <app-cart-body [products]="products"></app-cart-body>
   </section>
   <section class="container">
-    <app-cart-footer></app-cart-footer>
+    <app-cart-footer [subtotal]="subtotal" [tax]="tax" [total]="total" [promoCode]="promoCode" ></app-cart-footer>
   </section>
 </main>
