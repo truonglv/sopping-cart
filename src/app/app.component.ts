@@ -42,7 +42,6 @@ export class AppComponent implements OnInit, DoCheck {
     this.products[index].quantity = +productsss.inputElement;
   }
   HandleOnApplyPromoCode(promo: string) {
-    //alert("Ban duoc giam gia 30%");
     this.promoCode = promo;
   }
 }
