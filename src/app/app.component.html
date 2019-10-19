@@ -1,11 +1,20 @@
 <main>
   <header class="container">
-    <app-cart-header [itemnumber]="4" ></app-cart-header>
+    <app-cart-header [itemnumber]="itemnumber"></app-cart-header>
   </header>
   <section class="container">
-    <app-cart-body [products]="products"></app-cart-body>
+    <app-cart-body
+      [products]="products"
+      (onClickRemoveProduct)="HandleClickRemoveProduct($event)"
+      (onChangeQuantity)="HandleChangeQuantity($event)"
+    ></app-cart-body>
   </section>
   <section class="container">
-    <app-cart-footer [subtotal]="subtotal" [tax]="tax" [total]="total" [promoCode]="promoCode" ></app-cart-footer>
+    <app-cart-footer
+      [subtotal]="subtotal"
+      [tax]="tax"
+      [total]="total"
+      (onApplyPromoCode)="HandleOnApplyPromoCode($event)"
+    ></app-cart-footer>
   </section>
 </main>
