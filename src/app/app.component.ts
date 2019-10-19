@@ -1,44 +1,25 @@
-import { Component, DoCheck } from "@angular/core";
+import { Component, OnInit, DoCheck } from "@angular/core";
 import { Products } from "./products.model";
+import { ProductService } from "./product.service";
+import { PromocodeService } from "./promocode.service";
 import { element } from "protractor";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent implements DoCheck {
+export class AppComponent implements OnInit, DoCheck {
   title = "xin chào theo giới";
   subtotal: number = 0;
   tax: number;
   total: number;
   itemnumber: number;
   promoCode: string = "";
-  products: Products[] = [
-    {
-      id: 1,
-      name: "Sản phẩm 1",
-      description: "Máy tính xách tay",
-      image: "https://via.placeholder.com/200x150",
-      price: 1000,
-      quantity: 2
-    },
-    {
-      id: 2,
-      name: "Sản phẩm 2",
-      description: "Xe máy",
-      image: "https://via.placeholder.com/200x150",
-      price: 3000,
-      quantity: 2
-    },
-    {
-      id: 3,
-      name: "Sản phẩm 3",
-      description: "Điều hòa cao cấp",
-      image: "https://via.placeholder.com/200x150",
-      price: 3000,
-      quantity: 2
-    }
-  ];
+  products: Products[];
+  constructor(public productService: ProductService) {}
+  ngOnInit() {
+    this.products = this.productService.getProduct();
+  }
   ngDoCheck() {
     let sub: number = 0;
     this.products.forEach(pro => {
@@ -54,21 +35,14 @@ export class AppComponent implements DoCheck {
     }
   }
   HandleClickRemoveProduct(id: number) {
-    const index = this.products.findIndex(pro => pro.id == id);
-    if (index !== -1) {
-      alert("Đã xóa sản phẩm " + this.products[index].name);
-      this.subtotal =
-        this.subtotal -
-        this.products[index].price * this.products[index].quantity;
-      this.products.splice(index, 1);
-    }
+    this.productService.RemoveProduct(id);
   }
   HandleChangeQuantity(productsss: any) {
     const index = this.products.findIndex(pro => pro.id == productsss.id);
     this.products[index].quantity = +productsss.inputElement;
   }
-  HandleOnApplyPromoCode(promoCode: string) {
-    alert("Ban duoc giam gia 30%");
-    this.promoCode = promoCode;
+  HandleOnApplyPromoCode(promo: string) {
+    //alert("Ban duoc giam gia 30%");
+    this.promoCode = promo;
   }
 }

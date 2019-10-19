@@ -12,7 +12,6 @@ export class CartFooterComponent {
   @Input() total: number;
   @Output() onApplyPromoCode = new EventEmitter();
   applyPromoCode() {
-    //console.log(this.promoCode);
     this.onApplyPromoCode.emit(this.promoCode);
   }
 }
